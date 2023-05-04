@@ -2,13 +2,13 @@ require 'omniauth/strategies/oauth2'
 
 module OmniAuth
   module Strategies
-    class AngelList < OmniAuth::Strategies::OAuth2
+    class Wellfound < OmniAuth::Strategies::OAuth2
       DEFAULT_SCOPE = 'email'.freeze
 
       option :client_options, {
-        site: 'https://angel.co/',
-        authorize_url: 'https://angel.co/api/oauth/authorize',
-        token_url: 'https://angel.co/api/oauth/token'
+        site: 'https://wellfound.com/',
+        authorize_url: 'https://wellfound.com/api/oauth/authorize',
+        token_url: 'https://wellfound.com/api/oauth/token'
       }
 
       option :access_token_options, {
@@ -37,7 +37,7 @@ module OmniAuth
                  'investor' => raw_info['investor'],
                  'locations' => raw_info['locations'],
                  'roles' => raw_info['roles'],
-                 'angellist_url' => raw_info['angellist_url'],
+                 'wellfound_url' => raw_info['angellist_url'],
                  'image' => raw_info['image'],
                  'skills' => raw_info['skills'] })
       end
@@ -85,4 +85,4 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization 'angellist', 'AngelList'
+OmniAuth.config.add_camelization 'wellfound', 'Wellfound'

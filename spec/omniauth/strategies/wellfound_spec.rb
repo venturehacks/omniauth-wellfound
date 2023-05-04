@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'omniauth-angellist'
+require 'omniauth-wellfound'
 
-describe OmniAuth::Strategies::AngelList do
+describe OmniAuth::Strategies::Wellfound do
   before :each do
     @request = double('Request')
     allow(@request).to receive(:params).and_return({})
@@ -21,30 +21,30 @@ describe OmniAuth::Strategies::AngelList do
       'locations' => [
         { 'id' => 1963, 'tag_type' => 'LocationTag', 'name' => 'buenos aires',
           'display_name' => 'Buenos Aires',
-          'angellist_url' => 'https://angel.co/buenos-aires' }
+          'wellfound_url' => 'https://wellfound.com/buenos-aires' }
       ],
       'roles' => [
         { 'id' => 14726, 'tag_type' => 'RoleTag', 'name' => 'developer',
           'display_name' => 'Developer',
-          'angellist_url' => 'https://angel.co/developer' },
+          'wellfound_url' => 'https://wellfound.com/developer' },
         { 'id' => 14725, 'tag_type' => 'RoleTag', 'name' => 'entrepreneur',
           'display_name' => 'Entrepreneur',
-          'angellist_url' => 'https://angel.co/entrepreneur-1' }
+          'wellfound_url' => 'https://wellfound.com/entrepreneur-1' }
       ],
       'skills' => [
         { 'id' => 82532, 'tag_type' => 'SkillTag', 'name' => 'ruby on rails',
           'display_name' => 'Ruby on Rails',
-          'angellist_url' => 'https://angel.co/ruby-on-rails-1' }
+          'wellfound_url' => 'https://wellfound.com/ruby-on-rails-1' }
       ],
       'scopes' => %w(email comment message talent),
-      'angellist_url' => 'https://angel.co/sebasr',
-      'image' => 'https://s3.amazonaws.com/photos.angel.co/users/90585-medium_jpg?1327684569'
+      'wellfound_url' => 'https://wellfound.com/sebasr',
+      'image' => 'https://s3.amazonaws.com/photos.wellfound.com/users/90585-medium_jpg?1327684569'
     }
   end
 
   subject do
     args = [@client_id, @client_secret, @options].compact
-    OmniAuth::Strategies::AngelList.new(nil, *args).tap do |strategy|
+    OmniAuth::Strategies::Wellfound.new(nil, *args).tap do |strategy|
       allow(strategy).to receive(:request).and_return(@request)
     end
   end
@@ -52,16 +52,16 @@ describe OmniAuth::Strategies::AngelList do
   it_should_behave_like 'an oauth2 strategy'
 
   describe '#client' do
-    it 'has correct AngelList site' do
-      expect(subject.client.site).to eq('https://angel.co/')
+    it 'has correct Wellfound site' do
+      expect(subject.client.site).to eq('https://wellfound.com/')
     end
 
     it 'has correct authorize url' do
-      expect(subject.client.options[:authorize_url]).to eq('https://angel.co/api/oauth/authorize')
+      expect(subject.client.options[:authorize_url]).to eq('https://wellfound.com/api/oauth/authorize')
     end
 
     it 'has correct token url' do
-      expect(subject.client.options[:token_url]).to eq('https://angel.co/api/oauth/token')
+      expect(subject.client.options[:token_url]).to eq('https://wellfound.com/api/oauth/token')
     end
   end
 

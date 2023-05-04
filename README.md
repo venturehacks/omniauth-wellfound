@@ -1,30 +1,30 @@
-# OmniAuth AngelList
+# OmniAuth Wellfound
 
-This gem contains the AngelList strategy for OmniAuth.
+This gem contains the Wellfound strategy for OmniAuth.
 
-AngelList uses the OAuth2 flow, you can read about it here: https://angel.co/api/oauth/faq
+Wellfound uses the OAuth2 flow, you can read about it here: https://wellfound.com/api/oauth/faq
 
 ## How To Use It
 
 So let's say you're using Rails, you need to add the strategy to your `Gemfile`:
 ```ruby
-    gem 'omniauth-angellist'
+    gem 'omniauth-wellfound'
 ```
 
 You can pull them in directly from github e.g.:
 ```ruby
-    gem 'omniauth-angellist', :git => 'https://github.com/wasabit/omniauth-angellist.git'
+    gem 'omniauth-wellfound', git: 'https://github.com/venturehacks/omniauth-wellfound.git'
 ```
 
 Once these are in, you need to add the following to your `config/initializers/omniauth.rb`:
 
 ```ruby
     Rails.application.config.middleware.use OmniAuth::Builder do
-      provider :angellist, YOUR_CUSTOMER_KEY, YOUR_CUSTOMER_SECRET
+        provider :wellfound, YOUR_CUSTOMER_KEY, YOUR_CUSTOMER_SECRET
     end
 ```
 
-You will obviously have to put in your key and secret, which you get when you register your app with AngelList (they call them API Key and Secret Key).
+You will obviously have to put in your key and secret, which you get when you register your app with Wellfound (they call them API Key and Secret Key).
 
 Now just follow the README at: https://github.com/intridea/omniauth
 
